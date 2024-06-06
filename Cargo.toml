@@ -1,0 +1,18 @@
+[package]
+name = "rekeeper"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "reaper_rekeeper"
+crate-type = ["cdylib"]
+
+[dependencies]
+rea-rs = "0.1.31"
+rea-rs-low = "0.1.31" # optional
+rea-rs-macros = "0.1.31"
+device_query = "2.1.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+musical-note = "0.1.105"
+directories = "5.0.1"

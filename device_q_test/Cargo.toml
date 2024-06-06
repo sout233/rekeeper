@@ -1,0 +1,10 @@
+[package]
+name = "device_q_test"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+musical-note = "0.1.105"
+device_query = "2.1.0"
+serde = "1.0.203"
+serde_json = "1.0.117"
