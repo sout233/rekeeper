@@ -1,8 +1,8 @@
 use rea_rs::Reaper;
 
-#[cfg(debug_assertions)]
 pub fn rpr_cprintln(msg: &str) {
     let reaper = Reaper::get();
+    #[cfg(debug_assertions)]
     reaper.show_console_msg(msg);
 }
 

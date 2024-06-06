@@ -5,6 +5,8 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::fs;
 
+use super::helper;
+
 // 高级吧，结构体（其实并没什么卵用）
 #[derive(Serialize, Deserialize)]
 struct KeyMap {
@@ -30,7 +32,7 @@ pub fn read_config() -> Option<HashMap<String, Option<u8>>> {
     let binding = config_dir.join("key_mapping.json");
     let path = binding.to_str().unwrap_or_default();
 
-    Reaper::get().show_console_msg(path);
+    helper::rpr_cprintln(path);
 
     // 读取JSON文件
     let json_content = fs::read_to_string(path).ok()?;
