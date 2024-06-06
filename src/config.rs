@@ -1,6 +1,5 @@
 use directories::ProjectDirs;
 use musical_note::ResolvedNote;
-use rea_rs::Reaper;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::fs;
@@ -29,13 +28,13 @@ pub fn read_config() -> Option<HashMap<String, Option<u8>>> {
 
     let config_dir = project_dirs.config_dir();
 
-    let binding = config_dir.join("key_mapping.json");
+    let binding = config_dir.join("rekeeper_key_mapping.json");
     let path = binding.to_str().unwrap_or_default();
 
     helper::rpr_cprintln(path);
 
     // 读取JSON文件
-    let json_content = fs::read_to_string(path).ok()?;
+    let json_content = fs::read_to_string(path).unwrap_or(get_default_json());
     // 解析JSON内容
     let keyboard_to_piano: KeyMap = serde_json::from_str(&json_content).ok()?;
 
@@ -51,4 +50,9 @@ pub fn read_config() -> Option<HashMap<String, Option<u8>>> {
     }
     // 这也太能套了……嵌套地狱w
     Some(new_map)
+}
+
+fn get_default_json() -> String {
+    let byte = include_str!("../rekeeper_key_mapping.json");
+    byte.to_string()
 }

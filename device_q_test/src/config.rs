@@ -18,7 +18,7 @@ fn piano_note_to_midi(note: &str) -> Option<u8> {
 
 pub fn read_config() -> Option<HashMap<String, u8>> {
     // 读取JSON文件
-    let json_content = fs::read_to_string("key_mapping.json").ok()?;
+    let json_content = fs::read_to_string("rekeeper_key_mapping.json").ok()?;
     // 解析JSON内容
     let keyboard_to_piano: KeyMap = serde_json::from_str(&json_content).ok()?;
 
